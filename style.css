@@ -8,10 +8,21 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: hidden;
   padding: 60px 0px 0px;
-  background: radial-gradient(95.63% 51.12% at 29.13% 53.33%, #eef9ff 0%, #97daff 100%);
   gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.birthday-hero-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  height: 100%;
+  transform: translateX(-50%);
+  background: radial-gradient(95.63% 51.12% at 29.13% 53.33%, #eef9ff 0%, #97daff 100%);
+  z-index: -1;
 }
 .birthday-hero-container {
   display: flex;
@@ -20,6 +31,7 @@
   gap: 8px;
   z-index: 2;
   justify-content: center;
+  overflow: hidden;
 }
 /* decorations */
 .birthday-decor {
@@ -57,6 +69,11 @@
 /* wave */
 .birthday-hero-wrapper svg {
   z-index: 2;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  height: auto;
+  display: block;
 }
 /* left image */
 .birthday-hero-container .birthday-sale-main {
@@ -82,6 +99,10 @@
   text-decoration: none;
   gap: 8px;
   padding: 5px 0;
+  transition: transform 0.2s ease;
+}
+.grid-icon-card a:hover {
+  transform: scale(1.1);
 }
 .grid-icon-card a .icon-card-label {
   font-size: clamp(11px, 2vw, 15px);
@@ -93,6 +114,7 @@
 .grid-icon-card a img {
   /* height: 50px; */
   width: clamp(98px, 18vw, 190px);
+  transition: transform 0.2s ease;
 }
 
 @media (width > 767px) {
