@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>X Birthday Balloons</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        background-color: #fff;
+        height: 100vh;
+        font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+
+      #balloon-container {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .balloon-wrap {
+        position: absolute;
+        bottom: -180px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        animation: floatUp linear forwards;
+        cursor: pointer;
+        pointer-events: auto;
+      }
+
+      .balloon-wrap.sway {
+        animation-name: floatUp, sway;
+        animation-timing-function: linear, ease-in-out;
+        animation-iteration-count: 1, infinite;
+      }
+
+      .balloon-svg {
+        width: 64px;
+        height: 80px;
+        display: block;
+        filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.12));
+      }
+
+      .string-svg {
+        width: 24px;
+        height: 70px;
+        display: block;
+        margin-top: -2px;
+      }
+
+      @keyframes floatUp {
+        0% {
+          bottom: -180px;
+        }
+        100% {
+          bottom: 110vh;
+        }
+      }
+
+      @keyframes sway {
+        0%,
+        100% {
+          margin-left: 0px;
+        }
+        50% {
+          margin-left: 30px;
+        }
+      }
+
+      .pop-particle {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        animation: popOut 0.5s ease-out forwards;
+      }
+
+      @keyframes popOut {
+        0% {
+          transform: translate(0, 0) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(var(--dx), var(--dy)) scale(0);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="balloon-container"></div>
+    <script>
+      const balloonContainer = document.getElementById("balloon-container");
+      const colors = ["#7B68EE", "#1565C0", "#E91E8C", "#7B1FA2", "#AB47BC", "#5C6BC0"];
+
+      // How many balloons appear per page load. Once these are spawned, no more come.
+      const TOTAL_BALLOONS = 18;
+      // Spread out their spawn so they don't all appear at once
+      const SPAWN_WINDOW_MS = 4000;
+
+      function balloonSVG(color) {
+        return `
+          <svg class="balloon-svg" viewBox="0 0 64 80" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="32" cy="34" rx="28" ry="32" fill="${color}" />
+            <path d="M26 64 L32 72 L38 64 Z" fill="${color}" />
+            <ellipse cx="22" cy="20" rx="7" ry="11" fill="white" opacity="0.45" />
+          </svg>
+        `;
+      }
+
+      function stringSVG() {
+        return `
+          <svg class="string-svg" viewBox="0 0 24 70" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 0 Q 22 17, 12 35 Q 2 53, 12 70"
+                  fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="1.5" />
+          </svg>
+        `;
+      }
+
+      function popBalloon(wrap, color) {
+        const rect = wrap.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+
+        wrap.style.transition = "transform 0.08s ease-out";
+        wrap.style.transform = "scale(1.15)";
+
+        setTimeout(() => {
+          wrap.remove();
+
+          const particleCount = 14;
+          for (let i = 0; i < particleCount; i++) {
+            const p = document.createElement("div");
+            p.classList.add("pop-particle");
+            const size = Math.random() * 8 + 4;
+            p.style.width = `${size}px`;
+            p.style.height = `${size}px`;
+            p.style.backgroundColor = color;
+            p.style.left = `${cx}px`;
+            p.style.top = `${cy}px`;
+
+            const angle = (Math.PI * 2 * i) / particleCount + Math.random() * 0.5;
+            const distance = Math.random() * 60 + 40;
+            p.style.setProperty("--dx", `${Math.cos(angle) * distance}px`);
+            p.style.setProperty("--dy", `${Math.sin(angle) * distance}px`);
+
+            document.body.appendChild(p);
+            p.addEventListener("animationend", () => p.remove());
+          }
+        }, 80);
+      }
+
+      function createBalloon() {
+        const wrap = document.createElement("div");
+        wrap.classList.add("balloon-wrap", "sway");
+
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        const randomPosition = Math.random() * 90 + 2;
+        const randomFloatSpeed = Math.random() * 2 + 2; // 3-5s to rise
+        const randomSwaySpeed = Math.random() * 2 + 2; // 2-4s sway cycle
+
+        wrap.innerHTML = balloonSVG(randomColor) + stringSVG();
+        wrap.style.left = `${randomPosition}%`;
+        wrap.style.animationDuration = `${randomFloatSpeed}s, ${randomSwaySpeed}s`;
+
+        wrap.addEventListener("click", () => popBalloon(wrap, randomColor));
+        wrap.addEventListener("animationend", (e) => {
+          if (e.animationName === "floatUp") wrap.remove();
+        });
+
+        balloonContainer.appendChild(wrap);
+      }
+
+      // Spawn a fixed batch once on page load, staggered, then stop for good.
+      for (let i = 0; i < TOTAL_BALLOONS; i++) {
+        const delay = Math.random() * SPAWN_WINDOW_MS;
+        setTimeout(createBalloon, delay);
+      }
+    </script>
+  </body>
+</html>
