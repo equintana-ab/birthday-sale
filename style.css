@@ -4,6 +4,9 @@
   box-sizing: border-box;
   font-family: "Poppins";
 }
+html {
+  overflow: hidden;
+}
 .birthday-hero-wrapper {
   display: flex;
   flex-direction: column;
@@ -110,6 +113,27 @@
   font-weight: 600;
   color: #0b63ff;
   line-height: 12.54px;
+  /* filter: url(#outline);
+  color: #3B5BFF;
+  font-weight: 800;
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: #fff;
+  paint-order: stroke; */
+  /* -webkit-text-stroke: 2px #fff; */
+  /* -webkit-text-stroke: 1px #fff; */
+  /* text-shadow:
+    1.5px 0 0 #fff,
+    -1.5px 0 0 #fff,
+    0 1.5px 0 #fff,
+    0 -1.5px 0 #fff,
+    1px 1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px -1px 0 #fff;
+  paint-order: stroke fill; */
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: #fff;
+  paint-order: stroke;
 }
 .grid-icon-card a img {
   /* height: 50px; */

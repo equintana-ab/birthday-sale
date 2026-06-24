@@ -82,10 +82,571 @@
           fill="#BAE6FF"
           mask="url(#path-1-outside-1_1223_32933)" />
       </svg>
+      <!-- <svg width="0" height="0">
+  <filter id="outline">
+    <feMorphology operator="dilate" radius="2" in="SourceAlpha" result="dilated"/>
+    <feFlood flood-color="#fff"/>
+    <feComposite in2="dilated" operator="in"/>
+    <feMerge>
+      <feMergeNode/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+</svg> -->
     </main>
+    <section>
+      <style>
+        .stretch-bg {
+          position: relative;
+        }
+
+        .stretch-bg::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 100vw;
+          height: 100%;
+          background: #97daff;
+          z-index: -1;
+        }
+        .cropped-banner-container {
+          position: relative;
+          overflow: unset !important;
+        }
+        .decor-balloon {
+          position: absolute;
+          bottom: -350px;
+          right: -50px;
+          pointer-events: none;
+          width: clamp(380px, 70vw, 888px);
+        }
+        .birthday-sale-header {
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+        }
+        @media (width > 767px) {
+          .decor-balloon {
+            bottom: -365px;
+          }
+          .birthday-sale-header {
+            flex-direction: row;
+            gap: 10px;
+          }
+        }
+        @media (width > 1023px) {
+          .decor-balloon {
+            bottom: -440px;
+          }
+        }
+      </style>
+
+      <div class="cropped-banner-container">
+        <img
+          class="decor-balloon"
+          src="https://equintana-ab.github.io/birthday-sale/birthday-sale-assets/three-balloons.png"
+          alt=""
+          aria-hidden="true" />
+        <div class="birthday-sale-header">
+          <a href=""
+            ><img
+              style="width: clamp(265px, 40vw, 518px); margin: 0 auto; height: auto"
+              src="https://equintana-ab.github.io/birthday-sale/birthday-sale-assets/birthday-sale-header.png"
+              alt=""
+              width="1200"
+              height="97"
+          /></a>
+          <div class="countdown">
+            <div class="timer" data-target="2026-06-01T00:00:00">
+              <div class="unit">
+                <h2 id="days" class="box">00</h2>
+                <span class="time-label">days</span>
+              </div>
+              <div class="unit">
+                <h2 id="hours" class="box">00</h2>
+                <span class="time-label">hours</span>
+              </div>
+              <div class="unit">
+                <h2 id="mins" class="box">00</h2>
+                <span class="time-label">mins</span>
+              </div>
+              <div class="unit">
+                <h2 id="secs" class="box">00</h2>
+                <span class="time-label">secs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", Arial, sans-serif;
+      }
+      /* timer css */
+      .timer {
+        display: flex;
+        align-items: center;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        background: linear-gradient(117deg, rgba(226, 239, 255, 0.36) 0.74%, rgba(226, 239, 255, 0.12) 111.76%);
+        backdrop-filter: blur(4px);
+        padding: 10px 15px;
+        gap: 12px;
+        position: relative;
+        justify-content: center;
+        width: fit-content;
+      }
+      .unit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        position: relative;
+      }
+      .unit:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        right: -7px;
+        width: 1px;
+        height: 35px;
+        background: rgba(255, 255, 255, 0.6);
+      }
+
+      .unit .time-label {
+        font-size: clamp(8px, 2vw, 14px);
+        color: #185baa;
+        font-weight: 400;
+      }
+
+      .box {
+        background: #fff;
+        padding: 5px 0px;
+        border-radius: 10px;
+        text-align: center;
+        width: clamp(42px, 10vw, 50px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        color: #185baa;
+        font-size: clamp(14px, 3vw, 18px);
+        font-weight: 600;
+      }
+
+      /* Tablet */
+      @media (width > 767px) {
+        .timer {
+          padding: 15px 16px;
+          z-index: 999;
+        }
+      }
+    </style>
+
+    <!-- Why Shop with Abenson - Section -->
+
+    <section id="why-shop-section"></section>
+
+    <script>
+      // type="text/simi-script">
+      const features = [
+        {
+          text: "Why shop <br> with Abenson",
+          icon: "", // no icon for first item
+        },
+        {
+          text: "Up to 24 months <br> installment",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+<rect x="-0.785156" y="10.124" width="18.4144" height="13.1531" rx="2.64432" transform="rotate(-22.0898 -0.785156 10.124)" fill="#019BF0"/>
+<rect width="10.1253" height="2" rx="1" transform="matrix(-0.927977 0.372637 0.372637 0.927977 13.9629 13.2651)" fill="#D2EDFF"/>
+<rect x="10.416" y="11.7256" width="16.5103" height="11.2216" rx="1.64432" fill="#D2EDFF" stroke="#185BAA" stroke-width="2" stroke-linejoin="round"/>
+<rect x="11.4209" y="14" width="14.5013" height="2.64432" fill="#019BF0"/>
+<rect width="5.28864" height="2" rx="1" transform="matrix(-1 0 0 1 17.3486 18.0923)" fill="#019BF0"/>
+<rect x="2.79102" y="12.6597" width="2.87793" height="2.87793" rx="1" transform="rotate(-22.301 2.79102 12.6597)" fill="#D2EDFF"/>
+</svg>`,
+        },
+        {
+          text: "Same-day delivery <br> within Metro Manila",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+<rect x="2" y="8" width="14" height="11" rx="1.6" fill="#D2EDFF" stroke="#185BAA" stroke-width="2" stroke-linejoin="round"/>
+<path d="M16 12H20.5C21.0523 12 21.5 12.4477 21.5 13V17.5C21.5 18.0523 21.0523 18.5 20.5 18.5H16V12Z" fill="#019BF0" stroke="#185BAA" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="8" cy="20.5" r="2.2" fill="#019BF0" stroke="#fff" stroke-width="1"/>
+<circle cx="18.5" cy="20.5" r="2.2" fill="#019BF0" stroke="#fff" stroke-width="1"/>
+<rect x="5" y="11" width="6" height="2" rx="1" fill="#019BF0"/>
+</svg>`,
+        },
+        {
+          text: "100% authentic & <br> original brands",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+<path d="M14 3L23 6.5V13.5C23 19 19 23 14 25C9 23 5 19 5 13.5V6.5L14 3Z" fill="#D2EDFF" stroke="#185BAA" stroke-width="2" stroke-linejoin="round"/>
+<path d="M9.5 13.5L12.5 16.5L18.5 10.5" stroke="#019BF0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`,
+        },
+        {
+          text: "Find the best gadgets <br> with personal shoppers",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+<rect x="3" y="4" width="22" height="15" rx="3" fill="#D2EDFF" stroke="#185BAA" stroke-width="2" stroke-linejoin="round"/>
+<path d="M9 19L9 23L14 19" fill="#D2EDFF" stroke="#185BAA" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="11" cy="11.5" r="2.3" fill="#019BF0"/>
+<path d="M7 16C7 13.8 8.8 12.5 11 12.5C13.2 12.5 15 13.8 15 16" stroke="#019BF0" stroke-width="2" stroke-linecap="round"/>
+<circle cx="19.5" cy="9.5" r="1" fill="#019BF0"/>
+<circle cx="19.5" cy="13" r="1" fill="#019BF0"/>
+<circle cx="19.5" cy="16" r="1" fill="#019BF0"/>
+</svg>`,
+        },
+      ];
+
+      const container = document.getElementById("why-shop-section");
+
+      container.innerHTML = features
+        .map(
+          (item) => `
+      <div>
+          ${item.icon || ""}
+          <p>${item.text}</p>
+      </div>
+  `,
+        )
+        .join("");
+    </script>
+
+    <style>
+      #why-shop-section {
+        display: flex;
+        width: 100vw;
+        overflow-x: auto;
+        gap: clamp(16px, 4vw, 24px);
+        justify-content: safe center;
+        align-items: center;
+        padding: 16px;
+      }
+
+      #why-shop-section::-webkit-scrollbar {
+        display: none;
+      }
+
+      #why-shop-section > div {
+        display: grid;
+        grid-template-columns: 30px 1fr;
+        text-wrap: nowrap;
+        height: fit-content;
+        line-height: clamp(12.54px, 2vw, 16px);
+        align-items: center;
+        gap: 8px;
+        color: var(--PrimaryTextColor-PrimaryText90, #4c525c);
+        font-size: clamp(11px, 2vw, 12px);
+        border-radius: 16px;
+        background: #fff;
+        padding: clamp(12px, 2vw, 16px);
+        box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+      }
+
+      #why-shop-section > div:hover {
+        transform: scale(1.05);
+        transition: 200ms ease-in-out;
+      }
+
+      #why-shop-section > div:first-of-type {
+        grid-template-columns: 1fr;
+        font-weight: 600;
+        font-size: clamp(11px, 2vw, 24px);
+        color: var(--PrimaryColor-Blue70, #185baa);
+        line-height: 130%;
+        box-shadow: none;
+      }
+
+      #why-shop-section > div img {
+        width: 30px;
+        height: 30px !important;
+        max-width: unset;
+      }
+    </style>
+    <!-- <section class="why-shop">
+      <div class="why-shop__container">
+        <div class="why-shop__title">
+          <h2>Why shop<br />in Abenson?</h2>
+        </div>
+
+        <div class="why-shop__list">
+          <div class="why-shop__card">
+            <div class="why-shop__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <rect
+                  x="-0.785156"
+                  y="10.124"
+                  width="18.4144"
+                  height="13.1531"
+                  rx="2.64432"
+                  transform="rotate(-22.0898 -0.785156 10.124)"
+                  fill="#019BF0" />
+                <rect
+                  width="10.1253"
+                  height="2"
+                  rx="1"
+                  transform="matrix(-0.927977 0.372637 0.372637 0.927977 13.9629 13.2651)"
+                  fill="#D2EDFF" />
+                <rect
+                  x="10.416"
+                  y="11.7256"
+                  width="16.5103"
+                  height="11.2216"
+                  rx="1.64432"
+                  fill="#D2EDFF"
+                  stroke="#185BAA"
+                  stroke-width="2"
+                  stroke-linejoin="round" />
+                <rect x="11.4209" y="14" width="14.5013" height="2.64432" fill="#019BF0" />
+                <rect width="5.28864" height="2" rx="1" transform="matrix(-1 0 0 1 17.3486 18.0923)" fill="#019BF0" />
+                <rect
+                  x="2.79102"
+                  y="12.6597"
+                  width="2.87793"
+                  height="2.87793"
+                  rx="1"
+                  transform="rotate(-22.301 2.79102 12.6597)"
+                  fill="#D2EDFF" />
+              </svg>
+            </div>
+            <p>
+              Up to 24 months <br />
+              installment
+            </p>
+          </div>
+
+          <div class="why-shop__card">
+            <div class="why-shop__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <rect
+                  x="-0.785156"
+                  y="10.124"
+                  width="18.4144"
+                  height="13.1531"
+                  rx="2.64432"
+                  transform="rotate(-22.0898 -0.785156 10.124)"
+                  fill="#019BF0" />
+                <rect
+                  width="10.1253"
+                  height="2"
+                  rx="1"
+                  transform="matrix(-0.927977 0.372637 0.372637 0.927977 13.9629 13.2651)"
+                  fill="#D2EDFF" />
+                <rect
+                  x="10.416"
+                  y="11.7256"
+                  width="16.5103"
+                  height="11.2216"
+                  rx="1.64432"
+                  fill="#D2EDFF"
+                  stroke="#185BAA"
+                  stroke-width="2"
+                  stroke-linejoin="round" />
+                <rect x="11.4209" y="14" width="14.5013" height="2.64432" fill="#019BF0" />
+                <rect width="5.28864" height="2" rx="1" transform="matrix(-1 0 0 1 17.3486 18.0923)" fill="#019BF0" />
+                <rect
+                  x="2.79102"
+                  y="12.6597"
+                  width="2.87793"
+                  height="2.87793"
+                  rx="1"
+                  transform="rotate(-22.301 2.79102 12.6597)"
+                  fill="#D2EDFF" />
+              </svg>
+            </div>
+            <p>
+              Same-day delivery <br />
+              within Metro Manila
+            </p>
+          </div>
+
+          <div class="why-shop__card">
+            <div class="why-shop__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <rect
+                  x="-0.785156"
+                  y="10.124"
+                  width="18.4144"
+                  height="13.1531"
+                  rx="2.64432"
+                  transform="rotate(-22.0898 -0.785156 10.124)"
+                  fill="#019BF0" />
+                <rect
+                  width="10.1253"
+                  height="2"
+                  rx="1"
+                  transform="matrix(-0.927977 0.372637 0.372637 0.927977 13.9629 13.2651)"
+                  fill="#D2EDFF" />
+                <rect
+                  x="10.416"
+                  y="11.7256"
+                  width="16.5103"
+                  height="11.2216"
+                  rx="1.64432"
+                  fill="#D2EDFF"
+                  stroke="#185BAA"
+                  stroke-width="2"
+                  stroke-linejoin="round" />
+                <rect x="11.4209" y="14" width="14.5013" height="2.64432" fill="#019BF0" />
+                <rect width="5.28864" height="2" rx="1" transform="matrix(-1 0 0 1 17.3486 18.0923)" fill="#019BF0" />
+                <rect
+                  x="2.79102"
+                  y="12.6597"
+                  width="2.87793"
+                  height="2.87793"
+                  rx="1"
+                  transform="rotate(-22.301 2.79102 12.6597)"
+                  fill="#D2EDFF" />
+              </svg>
+            </div>
+            <p>
+              100% authentic & <br />
+              original brands
+            </p>
+          </div>
+
+          <div class="why-shop__card">
+            <div class="why-shop__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <rect
+                  x="-0.785156"
+                  y="10.124"
+                  width="18.4144"
+                  height="13.1531"
+                  rx="2.64432"
+                  transform="rotate(-22.0898 -0.785156 10.124)"
+                  fill="#019BF0" />
+                <rect
+                  width="10.1253"
+                  height="2"
+                  rx="1"
+                  transform="matrix(-0.927977 0.372637 0.372637 0.927977 13.9629 13.2651)"
+                  fill="#D2EDFF" />
+                <rect
+                  x="10.416"
+                  y="11.7256"
+                  width="16.5103"
+                  height="11.2216"
+                  rx="1.64432"
+                  fill="#D2EDFF"
+                  stroke="#185BAA"
+                  stroke-width="2"
+                  stroke-linejoin="round" />
+                <rect x="11.4209" y="14" width="14.5013" height="2.64432" fill="#019BF0" />
+                <rect width="5.28864" height="2" rx="1" transform="matrix(-1 0 0 1 17.3486 18.0923)" fill="#019BF0" />
+                <rect
+                  x="2.79102"
+                  y="12.6597"
+                  width="2.87793"
+                  height="2.87793"
+                  rx="1"
+                  transform="rotate(-22.301 2.79102 12.6597)"
+                  fill="#D2EDFF" />
+              </svg>
+            </div>
+            <p>
+              Find the best gadgets <br />
+              with personal shoppers
+            </p>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- for the why shop in abenson -->
+    <!-- <style>
+      .why-shop {
+        background: #f2f2f2;
+        padding: 16px 8px;
+      }
+
+      .why-shop__container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 24px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        scroll-snap-type: x proximity;
+      }
+
+      .why-shop__container::-webkit-scrollbar {
+        display: none;
+      }
+
+      .why-shop__title {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+      }
+
+      .why-shop__title h2 {
+        margin: 0;
+        color: #185baa;
+        font-size: clamp(11px, 2vw, 24px);
+        line-height: 1.2;
+        font-weight: 600;
+      }
+
+      .why-shop__list {
+        display: flex;
+        gap: 24px;
+      }
+
+      .why-shop__card {
+        flex: 0 0 165px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+        scroll-snap-align: start;
+        padding: 8px 16px;
+        margin: 10px;
+      }
+
+      .why-shop__icon {
+        flex-shrink: 0;
+        font-size: 24px;
+      }
+
+      .why-shop__card p {
+        margin: 0;
+        font-size: clamp(11px, 2vw, 12px);
+        line-height: 1.4;
+        font-weight: 400;
+      }
+
+      @media (min-width: 769px) {
+        .why-shop {
+          padding: 20px;
+        }
+
+        .why-shop__container {
+          gap: 24px;
+        }
+
+        .why-shop__title {
+          min-width: 180px;
+        }
+
+        .why-shop__title h2 {
+          font-size: 32px;
+        }
+
+        .why-shop__card {
+          flex-basis: 220px;
+        }
+      }
+    </style> -->
+
     <ul>
       <li><img src="birthday-sale-assets/birthday-sale-header.png" alt="" /></li>
       <li><img src="birthday-sale-assets/three-balloons.png" alt="" /></li>
+      <li><img src="birthday-sale-assets/carousel-header.png" alt="" /></li>
+      <li><img src="birthday-sale-assets/carousel-balloons.png" alt="" /></li>
     </ul>
   </body>
 </html>
